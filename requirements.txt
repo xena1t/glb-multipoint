@@ -1,0 +1,4 @@
+imageio>=2.27
+numpy>=1.23
+pyrender>=0.1.45
+trimesh>=3.21

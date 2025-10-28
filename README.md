@@ -14,13 +14,17 @@ pip install -r requirements.txt
 
 ## Usage
 
+Upload your GLB files into the repository's `input_glbs/` directory. The helper
+scripts read from this folder by default so you do not need to pass the file or
+directory paths manually.
+
 Render a single GLB file into a set of PNG images:
 
 ```bash
-python -m glb_multipoint.renderer path/to/model.glb --output-dir renders --views 12
+scripts/convert_glb.py --views 12 --image-size 1024 1024
 ```
 
-Alternatively, use the convenience script:
+You can still render a specific file by providing its path explicitly:
 
 ```bash
 scripts/convert_glb.py path/to/model.glb --views 12 --image-size 1024 1024
@@ -30,7 +34,7 @@ Render every GLB file under a directory into a mirrored folder structure of
 renders:
 
 ```bash
-scripts/convert_glb_directory.py path/to/models --output-dir renders --views 16
+scripts/convert_glb_directory.py --output-dir renders --views 16
 ```
 
 The renderer distributes cameras across a sphere using a Fibonacci spiral,

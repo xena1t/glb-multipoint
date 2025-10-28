@@ -11,6 +11,9 @@ from typing import Iterable
 from glb_multipoint.renderer import RenderConfig, render_glb_views
 
 
+DEFAULT_INPUT_DIR = pathlib.Path("input_glbs")
+
+
 def iter_glb_files(root: pathlib.Path) -> Iterable[pathlib.Path]:
     for path in root.rglob("*.glb"):
         if path.is_file():
@@ -19,7 +22,16 @@ def iter_glb_files(root: pathlib.Path) -> Iterable[pathlib.Path]:
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("root", type=pathlib.Path, help="Directory containing GLB files.")
+    parser.add_argument(
+        "root",
+        nargs="?",
+        default=DEFAULT_INPUT_DIR,
+        type=pathlib.Path,
+        help=(
+            "Directory containing GLB files. Defaults to the repository's "
+            "input_glbs folder."
+        ),
+    )
     parser.add_argument(
         "--output-dir",
         type=pathlib.Path,
